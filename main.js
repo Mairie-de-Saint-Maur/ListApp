@@ -60,13 +60,19 @@ function load_list() {
 							url :'app_status/'+obj.status_file,
 							async: false,
 							dataType: "text",
-							success: function(data) {
-								STATUT = data.split('\n')[0];
+							success: function(data, status, xhr) {
+								//On regarde la date de dernière modification du fichier
+								var LAST_M = moment(xhr.getResponseHeader('Last-Modified')).valueOf();
+								//si elle est supérieure à 10 min, on considère que le serveur ne réussit plus à récupérer le statut.
+								if(LAST_M !== void 0 && moment.duration(moment().valueOf()-LAST_M).asMinutes() < 10){
+									STATUT = data.split('\n')[0];
+								}else{
+									STATUT = 'UNKNOWN';
+								}
 							}
 						});
 					}
 					
-					console.log('after: '+obj.name+" "+STATUT+"camus");
 					switch (STATUT) {
 					case 'CRITICAL':
 						UL += 'app_down';
@@ -74,7 +80,6 @@ function load_list() {
 						DESC = "Cette application est indisponible.";
 						break;
 					case 'OK':
-						console.log("OK: "+STATUT);
 						UL += 'app_up';
 						ICLASS = "";
 						DESC = obj.desc;
