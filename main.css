@@ -24,7 +24,7 @@ html, body{
 }
 
 .applis_cont{
-	margin-top: 40px;
+	margin-top: 60px;
 }
 
 .filters{
@@ -33,6 +33,28 @@ html, body{
 	top: 0;
 	width: 100%;
     z-index: 3;
+	background-color: white;
+}
+
+/*** LEGENDE ***/
+.legend span{
+	margin-right: 30px;
+}
+
+.legend_UNKNOWN i{
+	color: rgba(0, 185, 242, 1);
+}
+
+.legend_OK i{
+	color: rgba(26, 214, 129, 1);
+}
+
+.legend_WARNING i{
+	color: rgba(244, 176, 65, 1);
+}
+
+.legend_CRITICAL i{
+	color: rgba(233, 58, 35, 1);
 }
 
 ul.list_applis{
@@ -169,6 +191,8 @@ li.applis_item.app_up .main_link{
 .app_up .filler, .app_up .right_img{
 	background-color: rgba(26, 214, 129, 1);
 }
+
+/*************** MAINTENANCE ***************/
 
 li.applis_item.app_maintenance .main_link{
 	border-color: rgba(244, 176, 65, 1);
