@@ -1,4 +1,4 @@
-## Pipeline déploiement Gitlab CI pour AppMonitor
+## Pipeline déploiement Gitlab CI pour ListApp
 ## Application de supervision applicative PHP/Selenium
 stages:
   - test
