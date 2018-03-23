@@ -18,11 +18,15 @@ save_job:
   script:
   - 'sudo rm -rf /var/www/html/dev/listapp_old/'
   - 'sudo cp -rf /var/www/html/dev/listapp/ /var/www/html/dev/listapp_old/'
+  - 'sudo rm -rf /var/www/html/dev/listapp/'
+
 
 
 ## Déploiement du nouveau code
 deploy_job:
   stage: deploy
   script:
-  - 'sudo cd /var/www/html/dev/listapp/ ; sudo git pull ;'
+  - 'sudo git clone http://gitlab.saintmaur.local:9091/dev/listapp.git /var/www/html/dev/listapp/'
+  - 'sudo cd /var/www/html/dev/listapp/ && sudo git pull origin master'
   - 'sudo systemctl reload httpd'
+
