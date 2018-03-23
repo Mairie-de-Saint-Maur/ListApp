@@ -17,8 +17,8 @@ save_job:
   stage: save
   script:
   - 'sudo rm -rf /var/www/html/dev/listapp_old/'
-  - 'sudo cp /var/www/html/dev/listapp/ /var/www/html/dev/listapp_old/'
-  - 'sudo rm -rf /var/www/html/dev/listapp'
+  - 'sudo cp -rf /var/www/html/dev/listapp/ /var/www/html/dev/listapp_old/'
+  - 'sudo rm -rf /var/www/html/dev/listapp/'
 
 
 ## Déploiement du nouveau code
