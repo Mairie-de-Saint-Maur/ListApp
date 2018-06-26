@@ -42,7 +42,8 @@ html, body{
 }
 
 .legend_UNKNOWN i{
-	color: rgba(0, 185, 242, 1);
+	/* color: rgba(0, 185, 242, 1); */
+	color: rgba(193, 193, 193, 1);
 }
 
 .legend_OK i{
@@ -226,10 +227,10 @@ li.applis_item.app_unreachable .main_link{
 /*************** NO STATUS ***************/
 
 li.applis_item.app_no_status .main_link{
-	border-color: rgba(0, 185, 242, 1);
-	--box-shadow-color: rgba(0, 185, 242, 0.2);
+	border-color: rgba(193, 193, 193, 1);
+	--box-shadow-color: rgba(193, 193, 193, 0.2);
 }
 
 .app_no_status .filler, .app_no_status .right_img{
-	background-color: rgba(0, 185, 242, 1);
+	background-color: rgba(193, 193, 193, 1);
 }
