@@ -97,6 +97,8 @@ function load_list() {
 						DESC = "Cette application est indisponible.";
 						break;
 					case 'OK':
+					case 'SUCCESS':
+					case 'RECOVERY':
 						UL += 'app_up';
 						ICLASS = "";
 						DESC = obj.desc;
