@@ -55,6 +55,15 @@ function load_list() {
 					}
 					//Ajout de classes pour le statut		
 					var STATUT = null;
+					var MAINTENANCE = false;
+					
+					if (obj.maintenance !== void 0){
+						obj.maintenance.forEach(function (period, index){
+							//S'il y a une période dans le futur, elle risque d'annuler la période actuelle, donc on garde le statut TRUE s'il a été validé une fois
+							MAINTENANCE = (MAINTENANCE || moment().isBetween(period.start, period.end, null, '[]'));
+						});
+					}
+					
 					if(obj.status_file !== void 0){
 						$.ajax({
 							url :'app_status/'+obj.status_file,
@@ -68,6 +77,14 @@ function load_list() {
 									STATUT = data.split('\n')[0];
 								}else{
 									STATUT = 'UNKNOWN';
+								}
+								
+								//Maintenance
+								//On récupère la liste des périodes de maintenance
+								
+								//On update le statut
+								if (MAINTENANCE){
+									STATUT = 'WARNING';
 								}
 							}
 						});
