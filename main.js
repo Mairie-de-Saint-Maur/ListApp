@@ -1,3 +1,4 @@
+
 $(function () {
     "use strict";
 	load_list();
@@ -24,8 +25,16 @@ function compareCat(a, b) {
 function load_list() {
     "use strict";
 	
-	//Noms des catégories
-	var catNames = ["Pour tous...", "Administratif", "Etat Civil, Elections", "Ressources & Médias", "DSI", "Culture", "Espace public"];
+	//Récup des catégories
+	var catNames;
+	$.ajax({
+		url :'categories.json',
+		async: false,
+		dataType: "JSON",
+		success: function(data, status, xhr) {
+			catNames = data;
+		}
+	});
 	
 	jQuery.getJSON('applis.conf', function (APPLIS) {
 		
@@ -68,6 +77,7 @@ function load_list() {
 						$.ajax({
 							url :'app_status/'+obj.status_file,
 							async: false,
+							cache: false,
 							dataType: "text",
 							success: function(data, status, xhr) {
 								//On regarde la date de dernière modification du fichier
@@ -108,12 +118,6 @@ function load_list() {
 						ICLASS = "fa-cog fa-spin";
 						DESC = "Maintenance en cours,<br>de retour bientôt...";
 						break;
-					/*case 3:
-						UL += 'app_unreachable';
-						ICLASS = "fa fa-question-circle";
-						// ICON = "./img/warning.png";
-						DESC = "Appli injoignable";
-						break;*/
 					case 'UNKNOWN':
 					default:
 						UL += 'app_no_status';
