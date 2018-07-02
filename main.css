@@ -137,6 +137,7 @@ li.applis_item img{
 	margin: 0;
 	padding: 0;
 	border-radius:  10px;
+	z-index: 1;
 }
 
 .filler{
@@ -156,7 +157,8 @@ li.applis_item img{
 }
 
 .filler i{
-	margin-right: 8px;
+	position: relative;
+	margin:0 8px 0 -5px;
 }
 
 .filler span.text{
@@ -170,8 +172,12 @@ li.applis_item img{
 	transition: opacity 0.5s;
 }
 
+.filler .downtime_date{
+	text-align: center;
+}
+
 li.applis_item:not(.app_up):not(.app_no_status) .fill_cont:hover > .filler{
-	width: 66%;
+	width: 80%;
 	padding: 5px;
 }
 

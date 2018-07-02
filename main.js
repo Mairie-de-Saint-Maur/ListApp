@@ -1,4 +1,4 @@
-
+moment.locale('fr');
 $(function () {
     "use strict";
 	load_list();
@@ -64,6 +64,9 @@ function load_list() {
 					}
 					//Ajout de classes pour le statut		
 					var STATUT = null;
+					var WARNING_STR = '';
+					var START;
+					var END;
 					var MAINTENANCE = false;
 					
 					if (obj.maintenance !== void 0){
@@ -78,27 +81,40 @@ function load_list() {
 							url :'app_status/'+obj.status_file,
 							async: false,
 							cache: false,
-							dataType: "text",
+							dataType: "JSON",
 							success: function(data, status, xhr) {
 								//On regarde la date de dernière modification du fichier
 								var LAST_M = moment(xhr.getResponseHeader('Last-Modified')).valueOf();
 								//si elle est supérieure à 10 min, on considère que le serveur ne réussit plus à récupérer le statut.
 								if(LAST_M !== void 0 && moment.duration(moment().valueOf()-LAST_M).asMinutes() < 10){
-									STATUT = data.split('\n')[0];
+									STATUT = data.status;
 								}else{
 									STATUT = 'UNKNOWN';
 								}
 								
 								//Maintenance
 								//On récupère la liste des périodes de maintenance
+								if(data.start !== void 0 && data.end !== void 0 && data.comment !== void 0){
+									START = moment.unix(data.start).format("D MMM H:m");
+									if (moment.unix(data.start).format("D MMM") == moment.unix(data.end).format("D MMM")){
+										END = moment.unix(data.end).format("H:m");
+									}else{
+										END = moment.unix(data.end).format("D MMM H:m");
+									}
+									WARNING_STR = data.comment+'<br>'+START+' à '+END;
+								}
 								
 								//On update le statut
 								if (MAINTENANCE){
 									STATUT = 'WARNING';
 								}
+							},
+							error : function(xhr, error_st, error){
+								console.log(error);
 							}
 						});
 					}
+					
 					
 					switch (STATUT) {
 					case 'CRITICAL':
@@ -116,7 +132,7 @@ function load_list() {
 					case 'WARNING':
 						UL += 'app_maintenance';
 						ICLASS = "fa-cog fa-spin";
-						DESC = "Maintenance en cours,<br>de retour bientôt...";
+						DESC = (WARNING_STR != '') ? WARNING_STR : "Maintenance en cours,<br>de retour bientôt...";
 						break;
 					case 'UNKNOWN':
 					default:
