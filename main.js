@@ -118,6 +118,7 @@ function load_list() {
 					
 					switch (STATUT) {
 					case 'CRITICAL':
+					case 'FAILURE':
 						UL += 'app_down';
 						ICLASS = "fa-exclamation-circle";
 						DESC = "Cette application est indisponible.";
