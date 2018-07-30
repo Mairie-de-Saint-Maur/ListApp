@@ -95,11 +95,12 @@ function load_list() {
 								//Maintenance
 								//On récupère la liste des périodes de maintenance
 								if(data.start !== void 0 && data.end !== void 0 && data.comment !== void 0){
-									START = moment.unix(data.start).format("D MMM H:m");
 									if (moment.unix(data.start).format("D MMM") == moment.unix(data.end).format("D MMM")){
-										END = moment.unix(data.end).format("H:m");
+										START = moment.unix(data.start).format("HH:mm");
+										END = moment.unix(data.end).format("HH:mm");
 									}else{
-										END = moment.unix(data.end).format("D MMM H:m");
+										START = moment.unix(data.start).format("D MMM HH:mm");
+										END = moment.unix(data.end).format("D MMM HH:mm");
 									}
 									WARNING_STR = data.comment+'<br>'+START+' à '+END;
 								}
