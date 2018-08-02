@@ -41,22 +41,38 @@ html, body{
 	margin-right: 30px;
 }
 
+/***** DEFINING COLORS FOR STATUS *****/
+
+:root {
+  --UNKNOWN-color: rgba(112, 169, 186, 1);
+  --UNKNOWN-color-boxshadow: rgba(112, 169, 186, 0.2);
+  
+  --OK-color: rgba(26, 214, 129, 1);
+  --OK-color-boxshadow: rgba(26, 214, 129, 0.2);
+  
+  --WARNING-color: rgba(244, 176, 65, 1);
+  --WARNING-color-boxshadow: rgba(244, 176, 65, 0.2);
+  
+  --CRITICAL-color: rgba(233, 58, 35, 1);
+  --CRITICAL-color-boxshadow: rgba(233, 58, 35, 0.2);
+}
+
+/****************************************/
+
 .legend_UNKNOWN i{
-	/* color: rgba(0, 185, 242, 1); */
-	/* color: rgba(193, 193, 193, 1); */
-	color: rgba(112, 169, 186, 1);
+	color: var(--UNKNOWN-color);
 }
 
 .legend_OK i{
-	color: rgba(26, 214, 129, 1);
+	color: var(--OK-color);
 }
 
 .legend_WARNING i{
-	color: rgba(244, 176, 65, 1);
+	color: var(--WARNING-color);
 }
 
 .legend_CRITICAL i{
-	color: rgba(233, 58, 35, 1);
+	color: var(--CRITICAL-color);
 }
 
 ul.list_applis{
@@ -192,52 +208,41 @@ li.applis_item:not(.app_up):not(.app_no_status) .fill_cont:hover .text{
 /*************** UP ***************/
 
 li.applis_item.app_up .main_link{
-	border-color: rgba(26, 214, 129, 1);
-	--box-shadow-color: rgba(26, 214, 129, 0.2);
+	border-color: var(--OK-color);
+	--box-shadow-color: var(--OK-color-boxshadow);
 }
 
 .app_up .filler, .app_up .right_img{
-	background-color: rgba(26, 214, 129, 1);
+	background-color: var(--OK-color);
 }
 
 /*************** MAINTENANCE ***************/
 
 li.applis_item.app_maintenance .main_link{
-	border-color: rgba(244, 176, 65, 1);
-	--box-shadow-color: rgba(244, 176, 65, 0.2);
+	border-color: var(--WARNING-color);
+	--box-shadow-color: var(--WARNING-color-boxshadow);
 }
 
 .app_maintenance .filler, .app_maintenance .right_img{
-	background-color: rgba(244, 176, 65, 1);
+	background-color: var(--WARNING-color);
 }
 /*************** App DOWN ***************/
 li.applis_item.app_down .main_link{
-	border-color: rgba(233, 58, 35, 1);
-	--box-shadow-color: rgba(233, 58, 35, 0.2);
+	border-color: var(--CRITICAL-color);
+	--box-shadow-color: var(--CRITICAL-color-boxshadow);
 }
 
 .app_down .filler, .app_down .right_img{
-	background-color: rgba(233, 58, 35, 1);
-}
-
-/*************** UNREACHABLE ***************/
-
-li.applis_item.app_unreachable .main_link{
-	border-color: rgba(227, 189, 139, 1);
-	--box-shadow-color: rgba(227, 189, 139, 0.2);
-}
-
-.app_unreachable .filler, .app_unreachable .right_img{
-	background-color: rgba(227, 189, 139, 1);
+	background-color: var(--CRITICAL-color);
 }
 
 /*************** NO STATUS ***************/
 
 li.applis_item.app_no_status .main_link{
-	border-color: rgba(112, 169, 186, 1);
-	--box-shadow-color: rgba(112, 169, 186, 0.2);
+	border-color: var(--UNKNOWN-color);
+	--box-shadow-color: var(--UNKNOWN-color-boxshadow);
 }
 
 .app_no_status .filler, .app_no_status .right_img{
-	background-color: rgba(112, 169, 186, 1);
+	background-color: var(--UNKNOWN-color);
 }
