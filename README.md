@@ -2,6 +2,16 @@
 Displays a list of softwares, reads .status files and change the design of the blocks accordingly.
 
 Designed to be called in an iframe.
+## How to install
+* Clone or unzip it into a web server
+* Configure categories in categories.json
+* List your apps in applis.conf (JSON)
+* Don't forget to include the logos in the IMG folder
+* Call index.html in an iframe
+
+Aside from that, you're free to generate .status files however youlike, put them in the app_status folder and list the status in the switch function inside main.js.
+
+Colors can be changed inside main.css, but 
 
 ## index.html
 Start point, loads :
