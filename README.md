@@ -11,8 +11,6 @@ Designed to be called in an iframe.
 
 Aside from that, you're free to generate .status files however youlike, put them in the app_status folder and list the status in the switch function inside main.js.
 
-Colors can be changed inside main.css, but 
-
 ## index.html
 Start point, loads :
 * Twitter Bootstrap
@@ -43,7 +41,17 @@ The most important function is load_list() :
 * At the end, it composes the whole HTML with titles and number of apps inside each category and send it into the div acting as container.
 
 /** IMPORTANT **/
+
 On the $.ajax jQuery function, the parameter async is set to false to be able to pass the information gathered to a variable outside of this function. For more information see here : https://stackoverflow.com/questions/1478295/what-does-async-false-do-in-jquery-ajax
+
+## Main.CSS
+
+You should not have to change anything other than the colors in this file. We've used CSS variables to ease this process. For each status (we have 4 : OK, WARNING, CRITICAL, UNKNOWN), there's two colors :
+--STATUS-color : this is the principal color, for border and background
+--STATUS-color-boxshadow : is the same color, but the opacity is very low (0.2) and it's used for the color of the shadow appearing on mouseover (:hover)
+
+Both of them are declared with RGBA, so it's easy apply the same color and only change the opacity.
+
 
 ## JSON Files for configuration
 ### applis.conf
@@ -114,3 +122,6 @@ The status files should be dynamically generated from another software (See http
 * css : contains bootstrap and fontawesome CSS files. The main CSS is at the same level as the index.html file.
 * font : contains glyphicons and metropolis font for styling
 * webfonts : contains FontAwesome 5 files
+
+/**** WARNING ****/
+The logos and fonts in these folders are not free to use. Use your own, or opensource instead.
